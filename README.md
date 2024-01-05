@@ -48,7 +48,7 @@ These work on the Impressa J9.3.
 |AN:01 | Switch On|   
 |AN:02 | Switch Off|   
 |||   
-|FA:01 | Switch off, including rinse|    
+|FA:01 | Power button|    
 |FA:02 | Menu button|    
 |FA:03 | Make 1 Espresso|    
 |FA:04 | Make 1 Coffee|    
