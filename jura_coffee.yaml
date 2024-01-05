@@ -1,13 +1,13 @@
 substitutions:
-  devicename: jura_coffee
+  devicename: jura
   friendly_name: Coffee Machine
-  device_description: Jura Coffee Machine in Kitchen
+  device_description: Jura Coffee Machine
 
 esphome:
   name: $devicename
   comment: ${device_description}
   platform: ESP8266
-  board: d1_mini
+  board: esp07
   platformio_options:
     upload_speed: 115200
   includes:
@@ -16,27 +16,29 @@ esphome:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
-  domain: .lan
-
+  
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: “${friendly_name} Fallback AP"
+    ssid: "Jura Fallback Hotspot"
     password: !secret fallback_ap_password
 
 captive_portal:
 
-logger:
-  level: DEBUG
-
-# Enable Home Assistant API & OTA Updates
+# Enable Home Assistant API
 api:
-  password: !secret api_password
+  encryption:
+    key: !secret api_password
+
 ota:
   password: !secret ota_password
 
+# Enable logging
+logger:
+  level: DEBUG
+
 uart:
-  tx_pin: D1
-  rx_pin: D2
+  tx_pin: GPIO5  # D1 
+  rx_pin: GPIO4  # D2 
   baud_rate: 9600
   id: uart_bus
 
@@ -81,9 +83,9 @@ switch:
     assumed_state: true
 
   - platform: template
-    name: 'Make Hot Water'
-    icon: "mdi:cup-water"
-    id: jura_make_hot_water
+    name: 'Make Espresso'
+    icon: "mdi:cup"
+    id: jura_make_espresso
     turn_on_action:
       - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
       - delay: 8ms
@@ -93,7 +95,7 @@ switch:
       - delay: 8ms
       - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
       - delay: 8ms
-      - uart.write: [0xFB, 0xDF, 0xFF, 0xDB]  ## '6'
+      - uart.write: [0xFF, 0xDB, 0xFF, 0xDB]  ## '3'
       - delay: 8ms
       - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
       - delay: 8ms
@@ -112,11 +114,126 @@ switch:
       - delay: 8ms
       - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
       - delay: 8ms
-      - uart.write: [0xDF, 0xFB, 0xFF, 0xDB]  ## '9'
+      - uart.write: [0xDB, 0xDF, 0xFF, 0xDB]  ## '4'
       - delay: 8ms
       - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
       - delay: 8ms
       - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
+  - platform: template
+    name: 'Make Ristretto'
+    icon: "mdi:cup"
+    id: jura_make_ristretto
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDF, 0xFF, 0xDB]  ## '5'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
+  - platform: template
+    name: 'Make Cappuccino'
+    icon: "mdi:coffee-outline"
+    id: jura_make_cappucino
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xDF, 0xFF, 0xDB]  ## '6'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+  
+  - platform: template
+    name: 'Make Latte Macchiato'
+    icon: "mdi:beer"
+    id: jura_make_latte
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xFF, 0xDF, 0xFF, 0xDB]  ## '7'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
+  - platform: template
+    name: 'Make Hot Water'
+    icon: "mdi:cup-water"
+    id: jura_make_hot_water
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xFB, 0xFF, 0xDB]  ## '8'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
+  - platform: template
+    name: 'Make 1'
+    icon: "mdi:cup-water"
+    id: jura_make_1
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xFF, 0xDB]  ## '1'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
+  - platform: template
+    name: 'Make 2'
+    icon: "mdi:cup-water"
+    id: jura_make_2
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xDB, 0xFF, 0xDB]  ## '2'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
 
 sensor:
   - platform: uptime
@@ -151,8 +268,68 @@ sensor:
     lambda: "return {};"
 
   - platform: template
+    id: num_ristretto
+    name: "Ristretto Made"
+    accuracy_decimals: 0
+    lambda: "return {};"
+ 
+  - platform: template
+    id: num_double_ristretti
+    name: "Double Ristretti Made"
+    accuracy_decimals: 0
+    lambda: "return {};"
+  
+  - platform: template
+    id: num_grinded_coffee
+    name: "Grinded Coffee Made"
+    accuracy_decimals: 0
+    lambda: "return {};"
+
+  - platform: template
+    id: num_hot_water
+    name: "Hot Water Made"
+    accuracy_decimals: 0
+    lambda: "return {};"
+
+  - platform: template
+    id: num_cappuccino
+    name: "Cappuccino Made"
+    accuracy_decimals: 0
+    lambda: "return {};"
+  
+  - platform: template
+    id: num_latte
+    name: "Latte Macchiato Made"
+    accuracy_decimals: 0
+    lambda: "return {};"
+ 
+  - platform: template
+    id: num_milk
+    name: "Milk Made"
+    accuracy_decimals: 0
+    lambda: "return {};"
+
+  - platform: template
     id: num_clean
     name: "Cleanings Performed"
+    accuracy_decimals: 0
+    lambda: "return {};"
+
+  - platform: template
+    id: num_filter
+    name: "Fiter Changed"
+    accuracy_decimals: 0
+    lambda: "return {};"
+  
+  - platform: template
+    id: num_milk_clean
+    name: "Milksystem Cleanings Performed"
+    accuracy_decimals: 0
+    lambda: "return {};"
+ 
+  - platform: template
+    id: num_decalcify
+    name: "Decalcify Performed"
     accuracy_decimals: 0
     lambda: "return {};"
 
@@ -169,6 +346,16 @@ text_sensor:
     id: tank_status
     name: "Water Tank Status"
     lambda: "return {};"
+  
+  - platform: template
+    id: num_all
+    name: "NUM ALL"
+    lambda: "return {};"
+  
+  - platform: template
+    id: status_all
+    name: "STATUS"
+    lambda: "return {};"
 
 binary_sensor:
   - platform: status
@@ -177,6 +364,6 @@ binary_sensor:
 # Custom component to poll coffee machine counters & status
 custom_component:
 - lambda: |-
-    auto my_jura = new JuraCoffee(id(uart_bus),id(num_single_espresso),id(num_double_espresso),id(num_coffee),id(num_double_coffee),id(num_clean),id(tray_status),id(tank_status));
+    auto my_jura = new JuraCoffee(id(uart_bus),id(num_single_espresso),id(num_double_espresso),id(num_coffee),id(num_double_coffee),id(num_grinded_coffee),id(num_ristretto),id(num_double_ristretti),id(num_cappuccino),id(num_latte),id(num_milk),id(num_hot_water),id(num_filter),id(num_milk_clean),id(num_decalcify),id(num_clean),id(tray_status),id(tank_status),id(num_all), id(status_all));
     App.register_component(my_jura);
     return {my_jura};
