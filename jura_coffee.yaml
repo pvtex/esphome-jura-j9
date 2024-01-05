@@ -83,6 +83,44 @@ switch:
     assumed_state: true
 
   - platform: template
+    name: 'Power'
+    icon: "mdi:power-cycle"
+    id: jura_power_switch
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xFF, 0xDB]  ## '1'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
+  - platform: template
+    name: 'Menue'
+    icon: "mdi:menu"
+    id: jura_menu_switch
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xDB, 0xFF, 0xDB]  ## '2'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+
+  - platform: template
     name: 'Make Espresso'
     icon: "mdi:cup"
     id: jura_make_espresso
@@ -197,9 +235,9 @@ switch:
       - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
 
   - platform: template
-    name: 'Power'
-    icon: "mdi:power-cycle"
-    id: jura_power_switch
+    name: 'Cup Light On'
+    icon: "mdi:lightbulb-on-outline"
+    id: jura_cup_light_on
     turn_on_action:
       - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
       - delay: 8ms
@@ -209,16 +247,15 @@ switch:
       - delay: 8ms
       - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
       - delay: 8ms
-      - uart.write: [0xDF, 0xDB, 0xFF, 0xDB]  ## '1'
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
       - delay: 8ms
       - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
       - delay: 8ms
       - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
-
   - platform: template
-    name: 'Menue'
+    name: 'Menu'
     icon: "mdi:menu"
-    id: jura_menu_switch
+    id: jura_menu
     turn_on_action:
       - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
       - delay: 8ms
@@ -228,12 +265,48 @@ switch:
       - delay: 8ms
       - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
       - delay: 8ms
-      - uart.write: [0xFB, 0xDB, 0xFF, 0xDB]  ## '2'
+      - uart.write: [0xFB, 0xDB, 0xDB, 0xDF]  ## 'B'
       - delay: 8ms
       - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
       - delay: 8ms
       - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
-
+  - platform: template
+    name: 'Menu Back'
+    icon: "mdi:menu-open"
+    id: jura_menu_back
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xFF, 0xDB, 0xDB, 0xDF]  ## 'C'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+  - platform: template
+    name: 'Menu Forward'
+    icon: "mdi:menu-close"
+    id: jura_menu_forward
+    turn_on_action:
+      - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xDB, 0xDB, 0xDF]  ## 'A'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xFF, 0xDB]  ## ':'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDB, 0xFF, 0xDB]  ## '0'
+      - delay: 8ms
+      - uart.write: [0xDB, 0xDF, 0xDB, 0xDF]  ## 'D'
+      - delay: 8ms
+      - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
+      - delay: 8ms
+      - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
+      
 sensor:
   - platform: uptime
     name: "${friendly_name} Uptime"
