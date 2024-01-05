@@ -42,39 +42,41 @@ Commands for your machine can be generated using the provided script, `generate_
 
 Particular commands seem to vary by model.\
 These work on the Impressa J6, software `TY: PIM V01.01`, `TL: LOADER V3.0`.
-Command | Action
---- | ---
-AN:01 | Switch On   
-AN:02 | Switch Off   
-   
-FA:01 | Switch off, including rinse    
-FA:02 | Menu button    
-FA:03 | Make 1 Espresso    
-FA:04 | Make 1 Coffee    
-FA:05 | Make 1 Ristretto    
-FA:06 | Make 1 Cappuccino    
-FA:07 | Make 1 Latte Macchiato    
-FA:08 | Make Hot Water     
-FA:09 | ?? Make 1 Coffee        
-FA:0A | ?? Make 2 Coffees    
-FA:0B | ?? Cup illumination light comes on. Also exits menu system.     
-FA:0C | ?? Enters the menu system - displays RINSE as the first option       
-FA:0D | ?? Cycles through menu options [dial counter-clockwise]    
-FA:OE | ?? Cycles through menu options clockwise [dial-clockwise]     
-FA:0F | ?? Reads "B. Full", Freezes up     
-FA:10 | ??    
-FA:11 | ??    
-     
-DA:16 | ?? Shows the final two digits on the display, i.e. "16.."    
+|Command | Action|
+| :---: | :---: |
+|AN:01 | Switch On|   
+|AN:02 | Switch Off|   
+|||   
+|FA:01 | Switch off, including rinse|    
+|FA:02 | Menu button|    
+|FA:03 | Make 1 Espresso|    
+|FA:04 | Make 1 Coffee|    
+|FA:05 | Make 1 Ristretto|    
+|FA:06 | Make 1 Cappuccino|    
+|FA:07 | Make 1 Latte Macchiato|    
+|FA:08 | Make Hot Water|     
+|FA:09 | ?? Make 1 Coffee|        
+|FA:0A | ?? Make 2 Coffees|    
+|FA:0B | ?? Cup illumination light comes on. Also exits menu system.|     
+|FA:0C | ?? Enters the menu system - displays RINSE as the first option|       
+|FA:0D | ?? Cycles through menu options [dial counter-clockwise]|    
+|FA:OE | ?? Cycles through menu options clockwise [dial-clockwise]|     
+|FA:0F | ?? Reads "B. Full", Freezes up|     
+|FA:10 | ??|    
+|FA:11 | ??|    
+|||     
+|DA:16 | ?? Shows the final two digits on the display, i.e. "16.."|    
 
 ***
 
 ### Response from RT Command:    
     
+example Response:
+```
 rt:00800001448B00000046001400062CB4005600208C7E00020000001A0000007D
-0123456789012345678901234567890123456789012345678901234567890123456
+```
 
-|       |Position| DEVICE |STRING |   
+|Counter|Position| DEVICE |STRING |   
 | :---: | :---:  | :---:  | :---: |
 |1 Espresso|(3,7)|128|0080:128|  
 |1 Ristretto|(7,11)|1|0001:1|   
