@@ -65,8 +65,7 @@ These work on the Impressa J9.3.
 |FA:0F | ?? Reads "B. Full", Freezes up|     
 |FA:10 | ??|    
 |FA:11 | ??|    
-|||     
-|DA:16 | ?? Shows the final two digits on the display, i.e. "16.."|    
+     
 
 ?? not verified   
 
