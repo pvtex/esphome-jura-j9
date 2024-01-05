@@ -1,5 +1,5 @@
-## ESPhome - Jura Impressa J6 
-This is an ESPhome custom component to communicate with a Jura Impressa J6 coffee machine.  It may also work with other serially-controlled Jura models with minimal adjustment.
+## ESPhome - Jura Impressa J9.3
+This is an ESPhome custom component to communicate with a Jura Impressa J9.3 coffee machine.  It may also work with other serially-controlled Jura models with minimal adjustment.
 
 It allows monitoring and control via HomeAssistant:
 
