@@ -102,6 +102,6 @@ rt:00800001448B00000046001400062CB4005600208C7E00020000001A0000007D
 ***  
     
 ### To-Do:
-- Determine how to initiate a Force Rinse action on this model
+- Find the missing counter values
 - Status of "Fill Beans", "Need Cleaning", and "Need Flushing"
 - Actual machine power state (currently we use an 'Optimistic', 'Assumed State' Template switch in ESPhome)
