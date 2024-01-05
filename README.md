@@ -57,18 +57,12 @@ These work on the Impressa J9.3.
 |FA:06 | Make 1 Cappuccino|    
 |FA:07 | Make 1 Latte Macchiato|    
 |FA:08 | Make Hot Water|     
-|FA:09 | ?? Make 1 Coffee|        
-|FA:0A | ?? Make 2 Coffees|    
-|FA:0B | ?? Cup illumination light comes on. Also exits menu system.|     
-|FA:0C | ?? Enters the menu system - displays RINSE as the first option|       
-|FA:0D | ?? Cycles through menu options [dial counter-clockwise]|    
-|FA:OE | ?? Cycles through menu options clockwise [dial-clockwise]|     
-|FA:0F | ?? Reads "B. Full", Freezes up|     
-|FA:10 | ??|    
-|FA:11 | ??|    
+|FA:09 | Make Hot Water|        
+|FA:0A | Cup Lights on|    
+|FA:0B | Menu|     
+|FA:0C | Menu Back|       
+|FA:0D | Menu Forward|    
      
-
-?? not verified   
 
 ***
 
