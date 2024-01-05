@@ -50,6 +50,7 @@ These work on the Impressa J9.3.
 |||   
 |FA:01 | Power button|    
 |FA:02 | Menu button|    
+|||
 |FA:03 | Make 1 Espresso|    
 |FA:04 | Make 1 Coffee|    
 |FA:05 | Make 1 Ristretto|    
