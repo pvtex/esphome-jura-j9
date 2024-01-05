@@ -42,26 +42,26 @@ Particular commands seem to vary by model.\
 These work on the Impressa J6, software `TY: PIM V01.01`, `TL: LOADER V3.0`.
 Command | Action
 --- | ---
-AN:01 | Switch On
-AN:02 | Switch Off
+AN:01 | Switch On   
+AN:02 | Switch Off   
    
-FA:01 | Switch off, including rinse
-FA:02 | Menu button
-FA:03 | Make 1 Espresso
-FA:04 | Make 1 Coffee 
-FA:05 | Make 1 Ristretto
-FA:06 | Make 1 Cappuccino
-FA:07 | Make 1 Latte Macchiato
-FA:08 | Make Hot Water
-FA:09 | 
-FA:0A | 
-FA:0B | ?? Cup illumination light comes on. Also exits menu system.
-FA:0C | 
-FA:0D | ?? Cycles through menu options [dial counter-clockwise]
-FA:OE | ?? Cycles through menu options clockwise [dial-clockwise]
-FA:0F | ?? Reads "B. Full", Freezes up
-   
-DA:16 | ?? Shows the final two digits on the display, i.e. "16.."
+FA:01 | Switch off, including rinse    
+FA:02 | Menu button    
+FA:03 | Make 1 Espresso    
+FA:04 | Make 1 Coffee    
+FA:05 | Make 1 Ristretto    
+FA:06 | Make 1 Cappuccino    
+FA:07 | Make 1 Latte Macchiato    
+FA:08 | Make Hot Water     
+FA:09 |     
+FA:0A |     
+FA:0B | ?? Cup illumination light comes on. Also exits menu system.     
+FA:0C |      
+FA:0D | ?? Cycles through menu options [dial counter-clockwise]    
+FA:OE | ?? Cycles through menu options clockwise [dial-clockwise]     
+FA:0F | ?? Reads "B. Full", Freezes up     
+     
+DA:16 | ?? Shows the final two digits on the display, i.e. "16.."    
 
 #### To-Do:
 - Determine how to initiate a Force Rinse action on this model
