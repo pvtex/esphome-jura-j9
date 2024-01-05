@@ -63,6 +63,40 @@ FA:0F | ?? Reads "B. Full", Freezes up
      
 DA:16 | ?? Shows the final two digits on the display, i.e. "16.."    
 
+
+Response from RT Command:    
+    
+rt:00800001448B00000046001400062CB4005600208C7E00020000001A0000007D
+0123456789012345678901234567890123456789012345678901234567890123456
+
+|       |Position| DEVICE |STRING |   
+| :---: | :---:  | :---:  | :---: |
+|S Espresso|(3,7)|128|0080:128|  
+|Ristretto|(7,11)|1|0001:1|   
+|Kaffee|(11,15)|17547|448B:17547|
+||(15,19)|0|0000:0|   
+|Cappuccino|(19,23)|70|0046:70|    
+|Latte|(23,27)|20|0014:20|    
+|grinded Kaffee|(27,31)|6|0006:6|  
+||(31,35)||2CB4:11444|
+|Reinigung|(35,39)|86|0056:86|    
+|Entkalkung|(39,43)|32|0020:32| 
+||(43,47)||8C7E:35966|
+||(47,51)||0002:2|
+|d Ristretti|(51,55)||0000:0|     
+||(55,59)||001A:26|     
+|d Espresso|(59,63)|6|0006:6|    
+||(63,67)||007D:125|
+|||||    
+|Heiswasser|()|15||     
+|Milch|()|3||     
+|Filter|()|4||     
+|Milchreinigung|()|12||     
+|2 Kaffee|()|45||    
+|Total|()|17823||    
+     
+    
+    
 #### To-Do:
 - Determine how to initiate a Force Rinse action on this model
 - Status of "Fill Beans", "Need Cleaning", and "Need Flushing"
