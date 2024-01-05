@@ -197,9 +197,9 @@ switch:
       - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
 
   - platform: template
-    name: 'Make 1'
-    icon: "mdi:cup-water"
-    id: jura_make_1
+    name: 'Power'
+    icon: "mdi:power-cycle"
+    id: jura_power_switch
     turn_on_action:
       - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
       - delay: 8ms
@@ -216,9 +216,9 @@ switch:
       - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
 
   - platform: template
-    name: 'Make 2'
-    icon: "mdi:cup-water"
-    id: jura_make_2
+    name: 'Menue'
+    icon: "mdi:menu"
+    id: jura_menu_switch
     turn_on_action:
       - uart.write: [0xFB, 0xDF, 0xDB, 0xDF]  ## 'F'
       - delay: 8ms
@@ -233,7 +233,6 @@ switch:
       - uart.write: [0xDF, 0xFF, 0xDB, 0xDB]  ## '\r'
       - delay: 8ms
       - uart.write: [0xFB, 0xFB, 0xDB, 0xDB]  ## '\n'
-
 
 sensor:
   - platform: uptime
