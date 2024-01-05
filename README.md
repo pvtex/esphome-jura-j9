@@ -3,7 +3,8 @@ This is an ESPhome custom component to communicate with a Jura Impressa J9.3 cof
 
 It allows monitoring and control via HomeAssistant:
 
-<img src="images/HomeAssistant_interface.png" alt="drawing" width=55%/>
+<img src="images/controlelements.png" alt="drawing" width=55%/>
+<img src="images/sensors.png" alt="drawing" width=55%/>
 
 ***
 
