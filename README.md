@@ -7,6 +7,7 @@ It allows monitoring and control via HomeAssistant:
 
 ***
 
+### ESP Interface
 Hardware is a Wemos D1 Mini connected to the 7-pin Jura service port via a 3.3V<->5V logic level converter.\
 The D1 mini is powered from the Jura.
 
@@ -20,6 +21,7 @@ If you have diffuculty, try swapping the TX/RX pins.
 
 ***
 
+### Create Commands
 Commands for your machine can be generated using the provided script, `generate_esphome_jura_yaml.py`.  It requires the `bitarray` Python module to be installed.
 
       $ ./generate_esphome_jura_yaml.py AN:01
@@ -53,18 +55,21 @@ FA:05 | Make 1 Ristretto
 FA:06 | Make 1 Cappuccino    
 FA:07 | Make 1 Latte Macchiato    
 FA:08 | Make Hot Water     
-FA:09 |     
-FA:0A |     
+FA:09 | ?? Make 1 Coffee        
+FA:0A | ?? Make 2 Coffees    
 FA:0B | ?? Cup illumination light comes on. Also exits menu system.     
-FA:0C |      
+FA:0C | ?? Enters the menu system - displays RINSE as the first option       
 FA:0D | ?? Cycles through menu options [dial counter-clockwise]    
 FA:OE | ?? Cycles through menu options clockwise [dial-clockwise]     
 FA:0F | ?? Reads "B. Full", Freezes up     
+FA:10 | ??    
+FA:11 | ??    
      
 DA:16 | ?? Shows the final two digits on the display, i.e. "16.."    
 
+***
 
-Response from RT Command:    
+### Response from RT Command:    
     
 rt:00800001448B00000046001400062CB4005600208C7E00020000001A0000007D
 0123456789012345678901234567890123456789012345678901234567890123456
@@ -95,9 +100,9 @@ rt:00800001448B00000046001400062CB4005600208C7E00020000001A0000007D
 |2 Kaffee|()|45||    
 |Total|()|17823||    
      
+***  
     
-    
-#### To-Do:
+### To-Do:
 - Determine how to initiate a Force Rinse action on this model
 - Status of "Fill Beans", "Need Cleaning", and "Need Flushing"
 - Actual machine power state (currently we use an 'Optimistic', 'Assumed State' Template switch in ESPhome)
