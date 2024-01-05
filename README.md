@@ -18,14 +18,6 @@ Above image taken from [here](https://community.home-assistant.io/t/control-your
 
 If you have diffuculty, try swapping the TX/RX pins.
 
-The D1 Mini and level converter are placed in an enclosure screwed to the back of the Jura, hidden out of the way.
-
-<img src="images/d1-mini-mounting.jpg" alt="D1 mini mounting on back of J6" width=55%/>
-
-Internal connections to the service connector wires are done with "T" tap/splices, leaving the connector itself alone.
-
-<img src="images/t-splice.png" alt="T-splice" width=25%/>
-
 ***
 
 Commands for your machine can be generated using the provided script, `generate_esphome_jura_yaml.py`.  It requires the `bitarray` Python module to be installed.
@@ -52,21 +44,24 @@ Command | Action
 --- | ---
 AN:01 | Switch On
 AN:02 | Switch Off
+   
 FA:01 | Switch off, including rinse
-AN:0D | Tray Test? Or date related?
-FA:02 | Heat up water
-FA:03 | Heat up water & Make steam?
-FA:06 | Make hot water
-FA:07 | Make 1 Espresso
-FA:08 | Make 2 Espressi
-FA:09 | Make 1 Coffee
-FA:0A | Make 2 Coffees
-FA:0B | Cup illumination light comes on. Also exits menu system.
-FA:0C | Enters the menu system - displays RINSE as the first option
-FA:0D | Cycles through menu options [dial counter-clockwise]
-FA:OE | Cycles through menu options clockwise [dial-clockwise]
-FA:0F | Reads "B. Full", Freezes up
-DA:16 | Shows the final two digits on the display, i.e. "16.."
+FA:02 | Menu button
+FA:03 | Make 1 Espresso
+FA:04 | Make 1 Coffee 
+FA:05 | Make 1 Ristretto
+FA:06 | Make 1 Cappuccino
+FA:07 | Make 1 Latte Macchiato
+FA:08 | Make Hot Water
+FA:09 | 
+FA:0A | 
+FA:0B | ?? Cup illumination light comes on. Also exits menu system.
+FA:0C | 
+FA:0D | ?? Cycles through menu options [dial counter-clockwise]
+FA:OE | ?? Cycles through menu options clockwise [dial-clockwise]
+FA:0F | ?? Reads "B. Full", Freezes up
+   
+DA:16 | ?? Shows the final two digits on the display, i.e. "16.."
 
 #### To-Do:
 - Determine how to initiate a Force Rinse action on this model
